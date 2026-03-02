@@ -31,4 +31,3 @@
 29. And God said, Behold, I have given you every plant yielding seed that is on the face of all the earth, and every tree with seed in its fruit. You shall have them for food.
 30. And to every beast of the earth and to every bird of the heavens and to everything that creeps on the earth, everything that has the breath of life, I have given every green plant for food. And it was so.
 31. And God saw everything that he had made, and behold, it was very good. And there was evening and there was morning, the sixth day.
-

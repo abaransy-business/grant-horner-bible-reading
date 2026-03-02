@@ -21,7 +21,7 @@ for (let i = 0; i < 10; i++) {
 
 const allBooks = await fs.readdir("./by_chapter");
 
-async function readFilesInOrder(dirPath) {
+async function readFilesInOrder(dirPath, bookName) {
   const filePaths = await fs.readdir(dirPath);
 
   filePaths.sort();
@@ -32,7 +32,14 @@ async function readFilesInOrder(dirPath) {
     const fullPath = path.join(dirPath, filePath);
     const fileContent = await fs.readFile(fullPath, "utf-8");
 
-    fileContents.push(fileContent);
+    const indexOfHeaderMarkdown = fileContent.indexOf("#");
+
+    const fileContentWithChapter =
+      fileContent.slice(0, indexOfHeaderMarkdown + 1) +
+      ` ${bookName.split("_")[1]} - ` +
+      fileContent.slice(indexOfHeaderMarkdown + 1);
+
+    fileContents.push(fileContentWithChapter);
   }
 
   return fileContents;
@@ -56,6 +63,7 @@ try {
       const currentBook = allBooks[currentBookIndex];
       const chaptersForCurrentBook = await readFilesInOrder(
         `./by_chapter/${currentBook}`,
+        currentBook,
       );
 
       fullLists[i].push(chaptersForCurrentBook);
@@ -74,6 +82,7 @@ try {
 
         const chaptersForCurrentBook = await readFilesInOrder(
           `./by_chapter/${currentBook}`,
+          currentBook,
         );
 
         fullLists[i].push(chaptersForCurrentBook);
@@ -86,7 +95,6 @@ try {
       }
     }
   }
-  console.log(fullLists);
 
   fs.writeFile(
     "./fullLists.js",
