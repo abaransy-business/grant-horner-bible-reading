@@ -19,8 +19,6 @@ for (let i = 0; i < 10; i++) {
   fullLists.push([]);
 }
 
-// console.log(fullLists);
-
 const allBooks = await fs.readdir("./by_chapter");
 
 async function readFilesInOrder(dirPath) {
