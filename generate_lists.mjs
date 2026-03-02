@@ -34,9 +34,11 @@ async function readFilesInOrder(dirPath, bookName) {
 
     const indexOfHeaderMarkdown = fileContent.indexOf("#");
 
+    const bookNameWithoutNumber = bookName.slice(3);
+
     const fileContentWithChapter =
       fileContent.slice(0, indexOfHeaderMarkdown + 1) +
-      ` ${bookName.split("_")[1]} - ` +
+      ` ${bookNameWithoutNumber.split("_").join(" ")} -` +
       fileContent.slice(indexOfHeaderMarkdown + 1);
 
     fileContents.push(fileContentWithChapter);
