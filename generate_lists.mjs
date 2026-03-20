@@ -23,8 +23,12 @@ const allBooks = await fs.readdir("./by_chapter");
 
 async function readFilesInOrder(dirPath, bookName) {
   const filePaths = await fs.readdir(dirPath);
+  const collator = new Intl.Collator(undefined, {
+    numeric: true,
+    sensitivity: "base",
+  });
 
-  filePaths.sort();
+  filePaths.sort(collator.compare);
 
   const fileContents = [];
 
